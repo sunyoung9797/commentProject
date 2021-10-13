@@ -9,7 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <script>
         $(function () {
-            $('button').click(findFnc);
+            $('button').eq(0).click(findFnc); //요소찾기.
+            $('button').eq(1).click(function () { //체크된요소라인 삭제.
+                $('tbody>tr>td>input').filter(':checked').parentsUntil('tbody').remove();
+            });
         });
         
         function findFnc() {
@@ -50,6 +53,7 @@
 <body>
     <div id="show"></div>
     <button>클릭</button>
+    <button>삭제</button>
     <script>
         fetch('coffee.json')
             .then(x => x.json())
