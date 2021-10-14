@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>cookie/storage.html</title>
+</head>
+<body>
+	<button id="set">SetStorage</button>
+    <button id="clear">Clear</button>
+    <button id="check">Check</button>
+
+    <script>
+    
+    	// session : 브라우저가 끊어지면 값이 없어진다.
+    	// local : 브라우저가 끊어져도 값이 그대로 있다.
+        document.getElementById('set').onclick = function () {
+            sessionStorage.setItem('username', 'hongkildong');
+            sessionStorage.setItem('userid','hong');
+        }
+        
+        document.getElementById('clear').onclick = function () {
+            // sessionStorage.setItem('username', 'null');
+            // sessionStorage.setItem('userid','null');
+            sessionStorage.removeItem('username');
+            sessionStorage.removeItem('userid');
+        }
+
+        document.getElementById('check').onclick = function () {
+            let userName = sessionStorage.getItem('username');
+            let userId = sessionStorage.getItem('userid');
+            console.log(`name: ${userName}, id:${userId}`);
+        }
+    </script>
+</body>
+</html>
