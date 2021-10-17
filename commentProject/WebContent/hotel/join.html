@@ -7,6 +7,63 @@
     <title>join.html</title>
 </head>
 <body>
-    
+    <header>
+        <h3>Yedam Hotel</h3>
+    </header>
+    <section>
+        <div id="add">
+            <div class="field">id: &nbsp;&nbsp;<input type="text" id="id"></div>
+            <div class="field">password: <input type="text" id="password"></div>
+            <div class="field">이름: &nbsp;&nbsp;<input type="text" id="name"></div>
+            <div class="field">주민등록번호: <input type="text" id="identity"></div>
+            <div class="field">email: &nbsp;<input type="text" id="email"></div>
+            <div class="field">전화번호: &nbsp;<input type="text" id="call"></div>
+            <div class="btn">
+                <button id="addBtn">회원가입</button>
+            </div>
+        </div>
+        <div id="show">
+        </div>
+    </section>
+    <footer>
+
+    </footer>
+
+    <script>
+        document.getElementById('addBtn').onclick = function () {
+            let id = document.getElementById('id').value;
+            let password = document.getElementById('password').value;
+            let name = document.getElementById('name').value;
+            let identity = document.getElementById('identity').value;
+            let email = document.getElementById('email').value;
+            let call = document.getElementById('call').value;
+
+            let xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                let exists = JSON.parse(xhttp.responseText);
+                if(exists.retCode == 'NG') {
+                    window.alert('이미 존재하는 아이디 입니다.');
+                    return;
+                }
+                if(id == ""||password==""||name==""||identity==""||email==""||call=="") {
+                    window.alert("필수입력항목 확인!");
+                    return;
+                }
+                let param = 'id=' +id+ '&password=' +password+ '&name=' +name+ '&identity=' +identity+ '&email=' +email+ '&call=' +call;
+                
+                let xhtp = new XMLHttpRequest();
+                xhtp.onload = function() {
+                    let data = JSON.parse(xhtp.responseText);
+                    document.querySelector('#show>table').appendChild(getRow(data));
+                }
+                xhtp.open('post','../AddHotelServlet');
+                xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhtp.send(param);
+            }
+            xhttp.open('get','../CheckHotelServlet?checkId'+id);
+            xhttp.send();
+            
+        }
+    </script>
 </body>
 </html>
