@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.hotel.HotelDAO;
-import co.yedam.hotel.HotelVO;
+import co.yedam.hotel.LoginVO;
 
 @WebServlet("/AddHotelServlet")
 public class AddHotelServlet extends HttpServlet {
@@ -21,6 +21,11 @@ public class AddHotelServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
+    	response.setContentType("text/html;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
@@ -30,7 +35,7 @@ public class AddHotelServlet extends HttpServlet {
 		
 		System.out.println("id: " + id + ",password: " + password + ",name: " + name + ",identity: " + identity + ",email: " + email  + ",call: " + call);
 		
-		HotelVO hotel = new HotelVO();
+		LoginVO hotel = new LoginVO();
 		hotel.setId(id);
 		hotel.setPassword(password);
 		hotel.setName(name);

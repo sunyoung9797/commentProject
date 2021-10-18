@@ -53,18 +53,18 @@ public class HotelDAO extends DAO{
 	}
 	
 	//가입
-	public boolean insertHotel(HotelVO hotel) {
+	public boolean insertHotel(LoginVO login) {
 		connect();
 		String sql ="insert into member (id,password,name,identity_number,email,call_nember)"
 				+ "value(?,?,?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, hotel.getId());
-			psmt.setString(2, hotel.getPassword());
-			psmt.setString(3, hotel.getName());
-			psmt.setInt(4, hotel.getIdentityNumber());
-			psmt.setString(5, hotel.getEmail());
-			psmt.setInt(6, hotel.getCallNumber());
+			psmt.setString(1, login.getId());
+			psmt.setString(2, login.getPassword());
+			psmt.setString(3, login.getName());
+			psmt.setInt(4, login.getIdentityNumber());
+			psmt.setString(5, login.getEmail());
+			psmt.setInt(6, login.getCallNumber());
 			
 			int r = psmt.executeUpdate();
 			System.out.println(r + "입력됨");

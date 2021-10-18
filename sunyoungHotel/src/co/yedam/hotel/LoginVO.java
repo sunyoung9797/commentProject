@@ -1,6 +1,6 @@
 package co.yedam.hotel;
 
-public class HotelVO {
+public class LoginVO {
 	
 	private String id;
 	private String password;
@@ -48,7 +48,7 @@ public class HotelVO {
 	
 	@Override
 	public String toString() {
-		return "HotelVO [id=" + id + ", password=" + password + ", name=" + name + ", identityNumber=" + identityNumber
+		return "LoginVO [id=" + id + ", password=" + password + ", name=" + name + ", identityNumber=" + identityNumber
 				+ ", email=" + email + ", callNumber=" + callNumber + "]";
 	}
 	

@@ -5,8 +5,128 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>join.html</title>
+    <script src="../jquery-3.6.0.min.js"></script>
+    <style>
+    header {
+	height: 90px;
+}
+
+header>div {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+header>div>svg {
+	padding-top: 17px;
+	padding-left: 45px;
+}
+
+header>div>a>img {
+	padding-top: 12px;
+	padding-left: 25px;
+}
+
+header>div.member {
+	vertical-align: middle;
+	float: right;
+	color: black;
+	padding-top: 15px;
+	padding-right: 30px;
+}
+
+header>div>div {
+	display: inline-block;
+	padding-right: 30px;
+}
+section {
+	padding-top:100px;
+	padding-left: 130px;
+    font-size: large;
+    font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+    </style>
 </head>
 <body>
-    
+    <header>
+        <div class="menuList">
+				<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+					fill="black" class="bi bi-text-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+						d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"></path>
+                </svg>
+			</div>
+			<div class="logo">
+				<a href="main.jsp"><img src="../image/logo2.png"></a>
+			</div>
+			<div class="member">
+				<div class="login">
+					<a href="join.html"></a>
+					<h5>로그인</h5>
+				</div>
+				<div class="join">
+					<h5>회원가입</h5>
+				</div>
+				<div class="confirm">
+					<h5>예약확인</h5>
+				</div>
+			</div>
+    </header>
+    <section>
+        <div id="add">
+            <div class="field">id: &emsp;&emsp;&emsp;&emsp;&emsp;<input type="text" id="id"></div><br>
+            <div class="field">password: &emsp;&ensp;<input type="text" id="password"></div><br>
+            <div class="field">이름: &emsp;&emsp;&emsp;&emsp;<input type="text" id="name"></div><br>
+            <div class="field">주민등록번호: <input type="text" id="identity"></div><br>
+            <div class="field">email: &emsp;&emsp;&emsp;&ensp;<input type="text" id="email"></div><br>
+            <div class="field">전화번호: &emsp;&emsp;<input type="text" id="call"></div><br>
+            <div class="btn">
+                <button id="addBtn">회원가입</button>
+            </div>
+        </div>
+        <div id="show">
+        </div>
+    </section>
+    <footer>
+			<div class="logo"></div>
+			<div class="info"></div>
+			<div class="address"></div>
+		</footer>
+
+    <script>
+        document.getElementById('addBtn').onclick = function () {
+            let id = document.getElementById('id').value;
+            let password = document.getElementById('password').value;
+            let name = document.getElementById('name').value;
+            let identity = document.getElementById('identity').value;
+            let email = document.getElementById('email').value;
+            let call = document.getElementById('call').value;
+
+            let xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                let exists = JSON.parse(xhttp.responseText);
+                if(exists.retCode == 'NG') {
+                    window.alert('이미 존재하는 아이디 입니다.');
+                    return;
+                }
+                if(id == ""||password==""||name==""||identity==""||email==""||call=="") {
+                    window.alert("필수입력항목 확인!");
+                    return;
+                }
+                let param = 'id=' +id+ '&password=' +password+ '&name=' +name+ '&identity=' +identity+ '&email=' +email+ '&call=' +call;
+                
+                let xhtp = new XMLHttpRequest();
+                xhtp.onload = function() {
+                    let data = JSON.parse(xhtp.responseText);
+                    document.querySelector('#show>table').appendChild(getRow(data));
+                }
+                xhtp.open('post','../AddHotelServlet');
+                xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhtp.send(param);
+            }
+            xhttp.open('get','../CheckHotelServlet?checkId'+id);
+            xhttp.send();
+            
+        }
+    </script>
 </body>
 </html>
