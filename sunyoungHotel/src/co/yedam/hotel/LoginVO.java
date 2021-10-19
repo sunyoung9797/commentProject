@@ -5,9 +5,9 @@ public class LoginVO {
 	private String id;
 	private String password;
 	private String name;
-	private int identityNumber;
+	private String identityNumber;
 	private String email;
-	private int callNumber;
+	private String callNumber;
 	
 	public String getId() {
 		return id;
@@ -27,10 +27,10 @@ public class LoginVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getIdentityNumber() {
+	public String getIdentityNumber() {
 		return identityNumber;
 	}
-	public void setIdentityNumber(int identityNumber) {
+	public void setIdentityNumber(String identityNumber) {
 		this.identityNumber = identityNumber;
 	}
 	public String getEmail() {
@@ -39,10 +39,10 @@ public class LoginVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getCallNumber() {
+	public String getCallNumber() {
 		return callNumber;
 	}
-	public void setCallNumber(int callNumber) {
+	public void setCallNumber(String callNumber) {
 		this.callNumber = callNumber;
 	}
 	

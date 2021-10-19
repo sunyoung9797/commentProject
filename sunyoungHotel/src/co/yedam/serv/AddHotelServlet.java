@@ -39,9 +39,9 @@ public class AddHotelServlet extends HttpServlet {
 		hotel.setId(id);
 		hotel.setPassword(password);
 		hotel.setName(name);
-		hotel.setIdentityNumber(Integer.parseInt(identity));
+		hotel.setIdentityNumber(identity);
 		hotel.setEmail(email);
-		hotel.setCallNumber(Integer.parseInt(call));
+		hotel.setCallNumber(call);
 		
 		HotelDAO dao = new HotelDAO();
 		PrintWriter out = response.getWriter();

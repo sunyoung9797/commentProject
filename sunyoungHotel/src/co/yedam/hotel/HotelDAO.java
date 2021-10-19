@@ -7,7 +7,7 @@ import co.yedam.common.DAO;
 public class HotelDAO extends DAO{
 	
 	//로그인
-	public boolean login(String id, String password) {
+	public int login(String id, String password) {
 		connect();
 		String sql = "select password from member where id = ?";
 		try {
@@ -16,19 +16,17 @@ public class HotelDAO extends DAO{
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString(1).equals(password)) {
-					return true;
+					return 1;
 				} else {
-					return false;
+					return 0;
 				}
 			}
-			return false;
+			return -1;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			disconnect();
-		}
-		return false;
+		} 
+		return -2;
 	}
 	
 	//아이디체크
@@ -55,16 +53,16 @@ public class HotelDAO extends DAO{
 	//가입
 	public boolean insertHotel(LoginVO login) {
 		connect();
-		String sql ="insert into member (id,password,name,identity_number,email,call_nember)"
+		String sql ="insert into member (id, password, name, identity_number, email, call_number) "
 				+ "value(?,?,?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, login.getId());
 			psmt.setString(2, login.getPassword());
 			psmt.setString(3, login.getName());
-			psmt.setInt(4, login.getIdentityNumber());
+			psmt.setString(4, login.getIdentityNumber());
 			psmt.setString(5, login.getEmail());
-			psmt.setInt(6, login.getCallNumber());
+			psmt.setString(6, login.getCallNumber());
 			
 			int r = psmt.executeUpdate();
 			System.out.println(r + "입력됨");

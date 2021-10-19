@@ -38,7 +38,7 @@ header>div>div {
 	padding-right: 30px;
 }
 </style>
-<script src="../jquery/jquery-3.6.0.js"></script>
+<script src="../jquery-3.6.0.js"></script>
 </head>
 <body>
 	<%
