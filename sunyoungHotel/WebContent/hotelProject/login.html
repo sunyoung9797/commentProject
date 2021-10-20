@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../jquery-3.6.0.min.js"></script>
+    <script src="../jquery/jquery-3.6.0.js"></script>
     <title>Document</title>
     <style>
     	header {
@@ -65,7 +65,7 @@ section>div.login {
                 </svg>
 			</div>
 			<div class="logo">
-				<a href="main.jsp"><img src="../image/logo2.png"></a>
+				<a href="main.jsp"><img src="logo2.png"></a>
 			</div>
 			<div class="member">
 				<div class="login">
@@ -99,21 +99,31 @@ section>div.login {
         document.getElementById('loginBtn').onclick = function () {
             let id = document.getElementById('id').value;
             let password = document.getElementById('password').value;
+            if(id == ""||password=="") {
+                window.alert("필수입력항목 확인!");
+                return;
+            }
 
             let xhttp = new XMLHttpRequest();
-            xhttp.onload = function() {
-                if(id == ""||password=="") {
-                    window.alert("필수입력항목 확인!");
-                    return;
-                }
-                let param = 'id='+id+'&password='+password;    
-                let xhtp = new XMLHttpRequest();
-                xhtp.open('post','bookableList.jsp');
-                xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhtp.send(param);
-            }
-            xhttp.open('get','../LoginHotelServlet');
+            xhttp.open('get','../LoginHotelServlet?id='+id+'&password='+password);
             xhttp.send();
+            xhttp.onload = function() {  
+            	console.log(xhttp.responseText);
+            	let data = JSON.parse(xhttp.responseText);
+            	console.log(data);
+            	if (data.msg == "로그인 성공입니다.") {
+					let name = data.name;
+					console.log(name);
+					console.log($('.loginBtn'));
+					location.href = "main.jsp?name=" + name + "&id=" + id;
+					sessionStorage.setItem('id', id);
+					sessionStorage.setItem('name', name);
+				} else {
+					window.alert('처리 중 에러가 발생했습니다.');
+					return;
+				}
+            }
+            
         }
     </script>
 </body>

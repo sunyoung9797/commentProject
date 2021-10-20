@@ -60,48 +60,80 @@
 		}
 		section>div>div.label {
 			font-family: "Lucida Console", "Courier New", monospace;
-			padding-left: 125px;
+			padding-left: 65px;
+		}
+		section>div>div.content {
+			padding-left: 63px;
 		}
 		section>div>div.label>div {
 			display: inline-block;
 			padding-top: 53px;
-			padding-right: 4%;
-			width: 13%;
+			padding-right: 3%;
+			width: 15%;
 			text-align: center;
 			font-family: sans-serif;
 			font-size: small;
 		}
-		section>div>div>div#datelabel {
-			padding-right : 100px;
-			width: 28%;
-			text-align: left;
-		}
-		section>div>div.content {
-			padding-left: 123px;
-		}
 		section>div>div.content>div {
 			display: inline-block;
 			padding-top: 8px;
-			padding-right: 4%;
+			padding-right: 3%;
 			padding-left: 2px;
-			width: 13%;
+			width: 15%;
 			text-align: center;
 		}
+		section>div>div>div#datelabel {
+			padding-right : 100px;
+			width: 29%;
+			text-align: left;
+		}
+		
 		section>div>div>div#datecontent {
 			padding-right : 100px;
-			width: 28%;
+			width: 29%;
 			text-align: left;
 		}
 		.bookableList>div{
 			display: block;
+			font-family: sans-serif;
+			height: 136px;
+			border-bottom: 1px dotted dimgrey;
 		}
-		.image, .info, .detailBtn, .price, .reserveBtn {
+		.image, .info, .backpart {
 			display: inline-block;
+			vertical-align: middle;
 		}
 		
 		.image {
-			padding-left: 100px;
+			padding-left: 58px;
 		}
+		.bookableList>div>.info {
+			width: 220px;
+			padding-left: 30px;
+		}
+		.info>div {
+			padding: 2%;
+		}
+		.info>div:child-of-first {
+			font-style: bold;
+		}
+		.backpart {
+			float: right;
+			margin-top: 60px;
+			margin-right: 5%;
+			width: 33%;
+			align-items; center;
+		}
+		.detailBtn, .price, .reserveBtn {
+			display: inline-block;
+			margin-right: 7%;
+		}
+		button {
+			border: transparent;
+			border-bottom: 1px solid dimgrey;
+			background-color: white;
+		}
+		
 	</style>
 	
 	<script>
@@ -135,14 +167,17 @@
 			                                    .append('<div>' + row.views + " | " + row.RoomSize + '</div>');
 			rowDiv.append(div);
 			
-			div = $('<div />').attr('class', 'detailBtn').append('<button id="detail">객실상세보기</button>')
-			rowDiv.append(div);
+			let divv = $('<div />').attr('class', 'backpart');
+			rowDiv.append(divv);
+			
+			div = $('<div />').attr('class', 'detailBtn').append('<button id="detail">객실상세보기</button>');
+			divv.append(div);
 			
 			div = $('<div />').attr('class', 'price').html(row.price + " KRW")
-			rowDiv.append(div);
+			divv.append(div);
 			
-			div = $('<div />').attr('class', 'reserveBtn').append('<button id="reserve">예약하기</button>')
-			rowDiv.append(div);
+			div = $('<div />').attr('class', 'reserveBtn').append('<button id="reserve">예약하기</button>');
+			divv.append(div);
 			
 			return rowDiv;
 			
@@ -164,7 +199,7 @@
 				<path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"></path>
 			</svg>
 		</div>
-		<div class="logo"><a href="main.html"><img src="../image/logo2.png"></a></div>
+		<div class="logo"><a href="main.html"><img src="logo2.png"></a></div>
 		<div class="member">
 			<div class="login"><h5>로그인</h5></div>
 			<div class="join"><h5>회원가입</h5></div>
@@ -192,17 +227,7 @@
 			</div>
 		</div>
 		<div class="bookableList">
-			<!--  
-			<div id="">
-				<div class="image"></div>
-				<div class="Info"></div>
-				<div class="detailBtn"></div>
-				<div class="price"></div>
-				<div class="reserveBtn">
-					<button></button>
-				</div>
-			</div>
-			-->
+			
 		</div>
 	</section>
 	
@@ -223,7 +248,7 @@
 		let toDate = '2021-10-23'; 
 		let rooms = '1';  
 		let adults = '2';
-		let children = '0';  
+		let children = '1';  
 		
 		let frDay = getDay(frDate);
 		let toDay = getDay(toDate);
@@ -257,7 +282,8 @@
 		})
 		
 		$(document).on('click', 'button#reserve', function(event){
-			location.href = "option.jsp?grpCd=" + $(event.target).parent().parent().attr('id') 
+			//console.log($(event.target).parent().parent().parent().attr('id'));
+			location.href = "option.jsp?grpCd=" + $(event.target).parent().parent().parent().attr('id')
 					      + "&frDate=" + frDate + "&toDate=" + toDate + "&rooms=" + rooms + "&adults=" + adults + "&children=" + children ;
 		})
 		

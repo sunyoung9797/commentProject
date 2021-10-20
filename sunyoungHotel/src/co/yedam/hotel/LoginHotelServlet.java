@@ -1,4 +1,4 @@
-package co.yedam.serv;
+package co.yedam.hotel;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -30,15 +30,17 @@ public class LoginHotelServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		HotelDAO dao = new HotelDAO();
-		int result = dao.login(id, password);
-		if(result == 1) {
-			out.println("{\"msg\":\"로그인 성공입니다.\"}");
-		} else if(result == 0) {
+		String result = dao.login(id, password);
+		System.out.println(result);
+		
+		if(result == "0") {
 			out.println("{\"msg\":\"로그인 실패입니다.\"}");
-		} else if (result == -1) {
+		} else if (result == "-1") {
 			out.println("{\"msg\":\"존재하지 않는 아이디입니다.\"}");
-		} else if (result == -2) {
+		} else if (result == "-2") {
 			out.println("{\"msg\":\"데이터베이스에 오류가 발생했습니다.\"}");
+		} else {
+			out.println("{\"msg\":\"로그인 성공입니다.\",\"name\":\"" + result + "\"}");
 		}
 	}
 

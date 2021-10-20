@@ -1,4 +1,4 @@
-package co.yedam.serv;
+package co.yedam.hotel;
 
 import java.io.IOException;
 import java.io.PrintWriter;

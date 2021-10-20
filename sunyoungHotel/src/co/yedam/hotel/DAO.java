@@ -1,4 +1,4 @@
-package co.yedam.common;
+package co.yedam.hotel;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

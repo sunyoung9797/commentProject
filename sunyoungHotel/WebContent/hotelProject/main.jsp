@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>main.jsp</title>
-<script src="../jquery-3.6.0.min.js"></script>
+<script src="../jquery/jquery-3.6.0.js"></script>
 </head>
 <style>
 header {
@@ -50,11 +50,8 @@ section {
 
 <body>
 	<%
-	String frDate = request.getParameter("frDate");
-	String toDate = request.getParameter("toDate");
-	String rooms = request.getParameter("rooms");
-	String adults = request.getParameter("adults");
-	String children = request.getParameter("children");
+	String name = request.getParameter("name");
+	String id = request.getParameter("id");
 	%>
 
 
@@ -68,7 +65,7 @@ section {
                 </svg>
 			</div>
 			<div class="logo">
-				<a href="main.jsp"><img src="../image/logo2.png"></a>
+				<a href="main.jsp"><img src="logo2.png"></a>
 			</div>
 			<div class="member">
 				<div class="login">
@@ -93,7 +90,7 @@ section {
 				</select><br><br>
 				성인&emsp;&emsp;&ensp;<input type="text" name="adult" id="adult"><br><br>
 				어린이&emsp;&ensp;<input type="text" name="kids" id="kids"><br><br>
-				<input type="submit" onclick="Search()" value="SEARCH">
+				<input type="submit" class="btnsearch"  value="SEARCH">
 			</div>
 
 		</section>
@@ -105,18 +102,41 @@ section {
 	</div>
 
 	<script>
-            let frDate = $('#checkin').val().replace('-','');
-            let toDate = $('#checkout').val().replace('-','');
-            let rooms = $('#room').val();
-            let adults = $('#adult').val();
-            let children =$('#kids').val();
-			let id = $();
+		let name = '<%=name%>';
+		let id = '<%=id%>';
 		
-		function Search() {
-
-            location.href = "bookableList.jsp?frDate=" + frDate + "&toDate=" + toDate + "&rooms=" + rooms 
-			                                + "&adults=" + adults + "&children=" + children + "&id=" + id;
-        }
+      	let frDate = $('#checkin').val().replace('-','');
+      	let toDate = $('#checkout').val().replace('-','');
+      	let rooms = $('#room').val();
+      	let adults = $('#adult').val();
+      	let children =$('#kids').val();
+		
+	  	$(document).on('click', '.btnsearch', function(event) {
+	  		location.href = "bookableList.jsp?frDate=" + frDate + "&toDate=" + toDate + "&rooms=" + rooms 
+	            + "&adults=" + adults + "&children=" + children + "&id=" + id;
+	  	})
+	  	
+	  	$(document).on('click', '.login', function(event) {
+	  		location.href = "login.html"
+	  	})
+	  	
+	  	if(sessionStorage.getItem('name')) {
+	  		//console.log($('.login>h5').html());
+	  		//console.log(name);
+	  		//console.log(sessionStorage.getItem('name'));
+	  		
+	  		if(sessionStorage.getItem('name')) {
+		  		$('.login>h5').html(sessionStorage.getItem('name') + "님");
+	  		} else {
+	  			$('.login>h5').html("로그인");
+	  		}
+	  	} else {
+	  		$('.login>h5').html("로그인");
+	  	}
+	  	
+		
+		
+			
 	</script>
 
 </body>
