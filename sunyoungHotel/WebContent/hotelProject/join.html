@@ -39,18 +39,16 @@ header>div>div {
 	padding-right: 30px;
 }
 section {
-	padding-top:100px;
-	padding-left: 130px;
-    font-size: large;
+	background-color: rgb(253, 241, 223);
+	height: 800px;
 }
-section>div#add {
-    background-color: rgb(224, 221, 221);
-    border: 2px solid rgb(110, 109, 109);
-    padding-top: 20px;
-	padding-left: 20px;
-    margin: 15%;
-    width: 380px;
-    height: 350px;
+
+section>div.add {
+	text-align: center;
+	padding-top: 60px;
+	padding-right: 80px;
+    font-size: large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
     </style>
 </head>
@@ -64,7 +62,7 @@ section>div#add {
                 </svg>
 			</div>
 			<div class="logo">
-				<a href="main.jsp"><img src="../image/logo2.png"></a>
+				<img src="../image/logo2.png">
 			</div>
 			<div class="member">
 				<div class="login">
@@ -80,15 +78,18 @@ section>div#add {
 			</div>
     </header>
     <section>
-        <div id="add">
-            <div class="field">id: &emsp;&emsp;&emsp;&emsp;&emsp;<input type="text" id="id"></div><br>
-            <div class="field">password: &emsp;&ensp;<input type="text" id="password"></div><br>
-            <div class="field">이름: &emsp;&emsp;&emsp;&emsp;<input type="text" id="name"></div><br>
-            <div class="field">주민등록번호: <input type="text" id="identity"></div><br>
-            <div class="field">email: &emsp;&emsp;&emsp;&ensp;<input type="text" id="email"></div><br>
-            <div class="field">전화번호: &emsp;&emsp;<input type="text" id="call"></div><br>
+        <div class="add">
+        	<h4 style="text-align: center; font-size: 60px;">
+				JOIN
+			</h4>
+            <div class="field">ID: &emsp;&emsp;&emsp;&emsp;&emsp;<input type="text" id="id"></div><br>
+            <div class="field">PASSWORD: &emsp;&ensp;<input type="text" id="password"></div><br>
+            <div class="field">NAME: &emsp;&emsp;&emsp;&emsp;<input type="text" id="name"></div><br>
+            <div class="field">주민등록번호: &ensp;<input type="text" id="identity"></div><br>
+            <div class="field">EMAIL: &emsp;&emsp;&emsp;&ensp;&ensp;<input type="text" id="email"></div><br>
+            <div class="field">CALLNUMBER: &emsp;<input type="text" id="call"></div><br>
             <div class="btn" style="text-align: center;">
-                <button id="addBtn" >회원가입</button>
+                <button id="addBtn" >JOIN</button>
             </div>
         </div>
         <div id="show">
@@ -135,6 +136,13 @@ section>div#add {
             xhttp.send();
             
         }
+        
+        
+
+        $(document).on('click', '.logo', function(event) {
+                   location.href = "main.jsp?id=" + id + "&name=" + name;
+                })
+
     </script>
 </body>
 </html>

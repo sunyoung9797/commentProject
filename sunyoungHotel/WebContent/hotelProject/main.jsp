@@ -8,6 +8,7 @@
 <script src="../jquery/jquery-3.6.0.js"></script>
 </head>
 <style>
+
 header {
 	height: 90px;
 }
@@ -39,12 +40,48 @@ header>div>div {
 	display: inline-block;
 	padding-right: 30px;
 }
-
 section {
-	padding-top:100px;
-	padding-left: 130px;
+	width:100%;
+    height:700px;
+
+}
+
+.search {
+	color: white;
+	position: absolute;
+	z-index:1;
+	width:100%;
+    height:70%;
+    margin: 20% 0% 20% 0%;
     font-size: large;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+table.in {
+	z-index:0;
+	background-color: rgba(0, 0, 0, 0.3);
+	padding: 2% 5% 2% 5%;
+}
+td {
+	width:19%;
+	text-align: center;
+}
+input#adult, input#kids{
+	width:70%;
+}
+select#room {
+	width:70%;	
+}
+
+img#img {
+	margin: 5% 0% 0% 0% ;
+	width: 100%;
+	height: 70%;
+	
+}
+.wrap {
+	height:100%;
+	z-index:2;
+	position: relative;
 }
 </style>
 
@@ -65,7 +102,7 @@ section {
                 </svg>
 			</div>
 			<div class="logo">
-				<a href="main.jsp"><img src="logo2.png"></a>
+				<img src="logo2.png">
 			</div>
 			<div class="member">
 				<div class="login">
@@ -80,18 +117,31 @@ section {
 			</div>
 		</header>
 		<section>
-			<div class="search">
-				체크인&emsp;&ensp;<input type="date" name="checkin" id="checkin"><br><br>
-				체크아웃&ensp;<input type="date" name="checkout" id="checkout"><br><br>
-				ROOM&emsp;&ensp;<select name="room" id="room">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-				</select><br><br>
-				성인&emsp;&emsp;&ensp;<input type="text" name="adult" id="adult"><br><br>
-				어린이&emsp;&ensp;<input type="text" name="kids" id="kids"><br><br>
-				<input type="submit" class="btnsearch"  value="SEARCH">
-			</div>
+			<div class="wrap">
+					<div class="search">
+						<table class="in">
+							<tbody>
+								<tr>
+									<td>CHECK IN<br><input type="date" name="checkin" id="checkin"></td>
+									<td>CHECK OUT<br><input type="date" name="checkout" id="checkout"></td>
+									<td>ROOM<br><select name="room" id="room">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+										</select></td>
+									<td>ADULT<br><input type="text" name="adult" id="adult"></td>
+									<td>CHILDREN<br><input type="text" name="kids" id="kids"></td>
+									<td>
+										<div class="btn" style="text-align: center;">
+											<button id="btnsearch">SEARCH</button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<img src="city.jpg" id="img">
+				</div>
 
 		</section>
 		<footer>
@@ -117,25 +167,38 @@ section {
 	  	})
 	  	
 	  	$(document).on('click', '.login', function(event) {
-	  		location.href = "login.html"
+           //이미 로그인 되어있으면 막도록 추가함**********************
+           if($('.login>h5').html() == "로그인") {
+              location.href = "login.html"
+           }
+        })
+        
+        if(sessionStorage.getItem('name')) {
+           //console.log($('.login>h5').html());
+           //console.log(name);
+           //console.log(sessionStorage.getItem('name'));
+           
+           if(sessionStorage.getItem('name')) {
+              $('.login>h5').html(sessionStorage.getItem('name') + "님");
+              
+           } else {
+              $('.login>h5').html("로그인");
+           }
+        } else {
+           $('.login>h5').html("로그인");
+        }
+
+
+	  	
+	  	$(document).on('click','.join', function(event) {
+	  		location.href = "join.html"
 	  	})
 	  	
-	  	if(sessionStorage.getItem('name')) {
-	  		//console.log($('.login>h5').html());
-	  		//console.log(name);
-	  		//console.log(sessionStorage.getItem('name'));
-	  		
-	  		if(sessionStorage.getItem('name')) {
-		  		$('.login>h5').html(sessionStorage.getItem('name') + "님");
-	  		} else {
-	  			$('.login>h5').html("로그인");
-	  		}
-	  	} else {
-	  		$('.login>h5').html("로그인");
-	  	}
 	  	
-		
-		
+		$(document).on('click', '.logo', function(event) {
+		     location.href = "main.jsp?id=" + id + "&name=" + name;
+		})
+				
 			
 	</script>
 
