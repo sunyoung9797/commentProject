@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>hotelProject/reservation.html</title>
+<title>Insert title here</title>
 <script src="../jquery/jquery-3.6.0.js"></script>
 
 	<style>
@@ -60,10 +60,10 @@
 		}
 		section>div>div.label {
 			font-family: "Lucida Console", "Courier New", monospace;
-			padding-left: 10%;
+			padding-left: 10.5%;
 		}
 		section>div>div.content {
-			padding-left: 10%;
+			padding-left: 10.5%;
 		}
 		section>div>div.label>div {
 			display: inline-block;
@@ -193,58 +193,6 @@
 			font-size: small;
 			color: dimgray;
 		}
-		#showLine {
-			padding-bottom: 8px;
-			padding-top: 8px;
-			font-family: sans-serif;
-			width: 610px;
-			
-		}
-		#hiddenPart {
-			padding: 10px;
-			background-color: rgb(248, 248, 248);
-			vertical-align: middle;
-			width: 580px;
-		}
-		.btnToggle {
-			float: right;
-			margin-right: 10px;
-		}
-		
-		table {
-			border-style: solid;
-            border-collapse: collapse;
-            border-left-color: transparent;
-            border-right-color: transparent;
-            border-top-color: transparent;
-            border-bottom-color: lightgrey;
-            padding: 5px;
-            background-color: white;
-            text-align: center;
-		}
-		th {
-			height: 37px;
-			width: 230px;
-			border-right-color: lightgrey;
-		}
-		th:last-of-type {
-			width: 120px;
-			border-right-color: transparent;
-		}
-		td {
-			font-size: small;
-			height: 50px;
-			border-right-color: lightgrey;
-		}
-		td:last-of-type {
-			border-left-color: lightgrey;
-			border-right-color: transparent;
-		}
-		.cnclAgree>div>div>dl>dt {
-			font-size: small;
-			padding-top: 5px;
-		}
-		
 		.price {
 			width: 280px;
 			margin-top: 120px;
@@ -340,25 +288,13 @@
 			
 		})
 	</script>
-</head>
 
+</head>
 <body>
 	<%
-		String div = request.getParameter("div");
+		String bookingCd = request.getParameter("bookingCd");
+		String roomCd = request.getParameter("roomCd");
 		String grpCd = request.getParameter("grpCd");
-		String frDate = request.getParameter("frDate");
-		String toDate = request.getParameter("toDate");
-		String rooms = request.getParameter("rooms");
-		String adults = request.getParameter("adults");
-		String children = request.getParameter("children");
-		String totPrice = request.getParameter("totPrice");
-		String roomPrice = request.getParameter("roomPrice");
-		String optName = request.getParameter("optName");
-		String optPrice = request.getParameter("optPrice");
-		String optDiv = request.getParameter("optDiv");
-		String optCnt = request.getParameter("optCnt");
-		String taxPrice = request.getParameter("taxPrice");
-		String req = request.getParameter("request");
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 	%>
@@ -370,17 +306,17 @@
 			</svg>
 		</div>
 		<div class="logo"><img src="logo2.png"></div>
-		<div class="member">
+		<div class="member" style="display:none">
 			<div class="login"><h5>로그인</h5></div>
 			<div class="join"><h5>회원가입</h5></div>
 			<div class="confirm"><h5>예약확인</h5></div>
 		</div>
 	</header>
-	
+
 	<section>
 		<div class="title"><div>BOOKING</div></div>
 		<div class="subtitle">
-			<p>예약자 정보 입력</p>
+			<p>예약 정보 확인</p>
 		</div>
 		<div class="SelectedInfo">
 			<div class="label">
@@ -520,61 +456,6 @@
 						</ul>
 					</div>
 				</div>
-				<div class="IdInfoAgree">
-					<h3>개인정보 수집·이용 동의</h3>
-					<div>
-						<div id="showLine">
-							<input type="checkbox" id="IdInfoAgree" name="IdInfoAgree" value="IdInfoAgree">
-							<lable for="IdInfoAgree">[필수] 개인정보 수집·이용에 동의합니다</lable>
-							<button class="btnToggle">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
-									<path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
-								</svg>
-							</button>
-						</div>
-						<div id="hiddenPart" style="display: none">
-							<table border="1">
-								<thead>
-									<tr>
-										<th>수집 항목</th><th>수집 목적</th><th>보유 기간</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>이름(국문/영문),<br>휴대폰번호, 이메일 주소</td>
-										<td>서비스 이용자 식별 및 의사 소통</td>
-										<td rowspan="2"><strong><u>객실예약 후 5년</u></strong></td>
-									</tr>
-										<td>신용카드 종류, 번호, 유효기간,<br>비밀번호(앞2자리), 생년월일</td>
-										<td>객실 및 부대시설<br>이용요금에 대한 보증</td>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="cnclAgree">
-					<h3>취소 규정</h3>
-					<div>
-						<div id="showLine">
-							<input type="checkbox" id="cnclAgree" name="cnclAgree" value="cnclAgree">
-							<lable for="cnclAgree">[필수] 취소 및 노쇼(NO-SHOW) 규정에 동의합니다.</lable>
-							<button class="btnToggle">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
-									<path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
-								</svg>
-							</button>
-						</div>
-						<div id="hiddenPart" style="display: none">
-							<dl>
-								<dt>· 체크인 7일 전 오후 6시 이전 : 위약금 없이 변경 및 취소 가능</dt>
-								<dt>· 체크인 7일 전 오후 6시 이후 - 1일 전 오후 6시 이전 : 최초 1박 요금의 20% 부과</dt>
-								<dt>· 체크인 1일 전 오후 6시 이후 : 취소 및 No-show 위약금 발생</dt>
-								<dt>&nbsp;&nbsp;- 1박 투숙 : 객실료의 80% 위약금 부과</dt>
-								<dt>&nbsp;&nbsp;- 2박 투숙 : 최초 1박 요금의 100% 부과</dt>
-							</dl>
-						</div>
-					</div>
-				</div>
 			</div>
 			<div class="price">
 				
@@ -583,82 +464,125 @@
 	</section>
 	
 	<footer>
-			<div class="logo"><img width="100px" src="logo3.png"></div>
-			<div class="info">
-				<div class="fmenu">
-					<div id="cutomercenter">고객센터</div>
-					<div id="usermanual">이용약관</div>
-					<div id="membership">멤버십 이용약관</div>
-					<div id="idinfomng">개인정보처리방침</div>
-					<div id="sitemap">사이트맵</div>
-					
-				</div>
-				<div class="address">
-					<p>대구광역시 중구 중앙대로 403   대표이사 서강중   053-421-2460</p>
-				</div>
+		<div class="logo"><img width="100px" src="logo3.png"></div>
+		<div class="info">
+			<div class="fmenu">
+				<div id="cutomercenter">고객센터</div>
+				<div id="usermanual">이용약관</div>
+				<div id="membership">멤버십 이용약관</div>
+				<div id="idinfomng">개인정보처리방침</div>
+				<div id="sitemap">사이트맵</div>
+				
 			</div>
-			
-		</footer>
+			<div class="address">
+				<p>대구광역시 중구 중앙대로 403   대표이사 서강중   053-421-2460</p>
+			</div>
+		</div>
+		
+	</footer>
 	
 	<script>
-		let div = '<%=div%>';
+		let bookingCd = '<%=bookingCd%>';
+		let roomCd = '<%=roomCd%>';
 		let grpCd = '<%=grpCd%>';
-		let frDate = '<%=frDate%>';
-		let toDate = '<%=toDate%>';
-		let rooms = '<%=rooms%>';
-		let adults = '<%=adults%>';
-		let children = '<%=children%>';
-		let totPrice = '<%=totPrice%>';
-		let roomPrice = '<%=roomPrice%>';
-		let optName = '<%=optName%>';
-		let optDiv = '<%=optDiv%>';
-		let optCnt = '<%=optCnt%>';
-		let optPrice = '<%=optPrice%>';
-		let taxPrice = '<%=taxPrice%>';
-		let req = '<%=req%>';
 		let id = '';
 		let name = '';
 		id = '<%=id%>';
 		name = '<%=name%>';
 		
-		//$('header').append('<h1>' + div + " : " + grpCd + " : " + frDate + " : " + toDate + " : " + rooms + " : " + adults + " : " + children + " : " + totPrice
-				//+ " : " + roomPrice + " : " + optName + " : " + optDiv + " : " + optCnt + " : " + optPrice + " : " + taxPrice + " : " + req + " : " + id + '</h1>');
 		
-		let aryOptName = optName.split(";");
-		let aryOptDiv = optDiv.split(";");
-		let aryOptCnt = optCnt.split(";");
-		let aryOptPrice = optPrice.split(";");
+		//-----
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', '../HotelServlet?cmd=grpInfo&grpCd=' + grpCd);
+		xhtp.send();
 		
-		let frDay = getDay(frDate);
-		let toDay = getDay(toDate);
-		let stay = getStay(frDate, toDate);
-		
-		
-		function getDay(date) {
-			let frDay = (new Date(date)).getDay();
+		xhtp.onload = function() {
+			let data = JSON.parse(xhtp.responseText);
 			
-			let = ['일', '월', '화', '수', '목', '금', '토'];
+			let row = data[0];
+			console.log(row);
 			
-			return let[frDay];
+			$('.categoryTxt').html(row.grpNm + " / " + row.beds + " / " + row.views);
+			//$('#roomprice').html(row.price);
+			//$('#taxprice').html(row.price * 1 / 10);
+			
+			//catTotTax();
 		}
+		//-----
+	
 		
-		function getStay(frDate, toDate) {
-			let fr = new Date(frDate);
-			let to = new Date(toDate);
+	    $.ajax({
+	        url: '../HotelServlet',
+	        type: 'get',
+	        dataType: 'json',
+	        data: {cmd: "chkRsv",
+	        		bookingCd: bookingCd
+	        	   },
+	        dataType: 'json',
+	        success: function(result) {
+	            console.log("성공");
+	            console.log(result[0]);
+	            getRsvInfo(result[0]);
+	        },
+	        error: function(reject) {
+	        	console.log("실패");
+	        }
+	    });
+		
+		function getRsvInfo(data) {
+			let reserveId = data.reserveId; //예약자ID
+			let gender = data.gender; //성별
+			let roomCd = data.roomCd; //예약룸코드
+			let grpCd = data.grpCd; //그룹코드
+			let checkIn = data.checkIn; //체크인날짜
+			let checkOut = data.checkOut; //체크아웃날짜
+			let adults = data.adults; //숙박할 어른 수
+			let children = data.children; //숙박할 어린이 수
+			let adultsBf = data.adultsBf; //어른 조식 수
+			let childrenBf = data.childrenBf; //어린이 조식 수
+			let extraBed = data.extraBed; //여분 침대 수
+			let adultsBfP = data.adultsBfP; //어른 조식 총 비용
+			let childrenBfP = data.childrenBfP; //어린이 조식 총 비용
+			let extraBedP = data.extraBedP; //여분 침대 총 비용
+			let roomPrice = data.roomPrice; //룸비용
+			let tax = data.tax; //세금
+			let totalPrice = data.totalPrice; //총 예약 비용
+			let cmt = data.cmt; //요청사항
+			let rsvName = data.rsvName; //예약자 이름
+			let engName = data.engName; //영어 이름
+			let nationality = data.nationality; //국적
+			let phoneNum = data.phoneNum; //연락처
+			let email = data.email; //이메일
+			let cardType = data.cardType; //카트종류
+			let cardNum = data.cardNum; //카드번호
+			let expDate = data.expDate; //카드만기일
+			let cardPw = data.cardPw; //카드비번
+			let birth = data.birth; //생년월일
 			
-			return (to - fr) / (60 * 60 * 24 * 1000);
-		}
+			let frDate = checkIn.substring(0, 4) + "-" + checkIn.substring(4, 6) + "-" + checkIn.substring(6);
+			let toDate = checkOut.substring(0, 4) + "-" + checkOut.substring(4, 6) + "-" + checkOut.substring(6);
+			
+			let frDay = getDay(frDate);
+			let toDay = getDay(toDate);
+			let stay = getStay(frDate, toDate);
+			
+			let aryEngNm= engName.split(':');
+			let aryPhoneNum = phoneNum.split('-');
+			let aryEmail = email.split('@');
+			console.log(aryEngNm[0]);
+			
+			//---------------------------------------------------------------
+			
+			$('#datecontent').html(frDate + ' ' + frDay + " ~ " + toDate + ' ' + toDay + " | " + stay + "박" );
+			$('#roomscontent').html("1");
+			$('#adultscontent').html(adults);
+			$('#childrencontent').html(children);
 		
-		$('#datecontent').html(frDate + ' ' + frDay + " ~ " + toDate + ' ' + toDay + " | " + stay + "박" );
-		$('#roomscontent').html(rooms);
-		$('#adultscontent').html(adults);
-		$('#childrencontent').html(children);
-		
-		
-		for(let i = 0; i < rooms; i++) {
+			//---------------------------------------------------------------
+			
 			let div = $('<div />')
 				.append($('<div />').attr('class', 'priceSec1')
-							.append($('<h3 />').html('객실' + (i + 1)),
+							.append($('<h3 />').html('객실'),
 									$('<div />').attr('class', 'showPrice')
 										.append($('<h1 />').html('KRW'),
 												$('<button />').attr('class', 'btnToggle').append('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/></svg>'),
@@ -688,224 +612,96 @@
 							)
 						
 				);
-			
 			$('.price').append(div);
-		}
-	
-		$('.price').append($('<div />').html('+세금(10%)'),
-				           $('<div />').attr('id', 'tot').append($('<div />').html('<h2>총 예약금액</h2>'),
-									        		   			 $('<div />').attr('id', 'totalprice').html('KRW')
-									        		     )
-				   );
-				   
-		$('.price').append($('<button />').attr('id', 'bookingComplete').append('예약 완료'));
-
-		
-		
-		
-		//-----
-		let xhtp = new XMLHttpRequest();
-		xhtp.open('get', '../HotelServlet?cmd=grpInfo&grpCd=' + grpCd);
-		xhtp.send();
-		
-		xhtp.onload = function() {
-			let data = JSON.parse(xhtp.responseText);
 			
-			let row = data[0];
-			console.log(row);
+			$('.price').append($('<div />').html('+세금(10%)'),
+					           $('<div />').attr('id', 'tot').append($('<div />').html('<h2>총 예약금액</h2>'),
+										        		   			 $('<div />').attr('id', 'totalprice').html('KRW')
+										        		     )
+					   );
+					   
+			//$('.price').append($('<button />').attr('id', 'bookingComplete').append('예약 완료'));
 			
-			$('.categoryTxt').html(row.grpNm + " / " + row.beds + " / " + row.views);
-			$('#roomprice').html(row.price);
-			$('#taxprice').html(row.price * 1 / 10);
+			//---------------------------------------------------------------
 			
-			showPrice();
-		}
-		//-----
-		
-		
-		function showPrice() {
-			let aryOptName = optName.split(";");
-			let aryOptDiv = optDiv.split(";");
-			let aryOptCnt = optCnt.split(";");
-			let aryOptPrice = optPrice.split(";");
-			
-			for(let i = 0; i < aryOptDiv.length; i++) {
-				$('#div' + aryOptDiv[i] + '>#optionprice').attr('data-div', aryOptDiv[i]).attr('data-cnt', aryOptCnt[i]).html(aryOptPrice[i]);
-				$('#div' + aryOptDiv[i]).attr('style', 'display: block');
+			if(Number(adultsBf) > 0) {
+				$('#divA>#optionprice').attr('data-div', 'A').attr('data-cnt', adultsBf).html(adultsBfP);
+				$('#divA').attr('style', 'display: block');
+			}
+			if(Number(childrenBf) > 0) {
+				$('#divC>#optionprice').attr('data-div', 'C').attr('data-cnt', childrenBf).html(childrenBfP);
+				$('#divC').attr('style', 'display: block');
+			}
+			if(Number(extraBed) > 0) {
+				$('#divE>#optionprice').attr('data-div', 'E').attr('data-cnt', extraBed).html(extraBedP);
+				$('#divE').attr('style', 'display: block');
 			}
 			
 			$('#roomprice').html(roomPrice);
 			
-			$('#taxprice').html(taxPrice);
+			$('#taxprice').html(tax);
 			
-			$('.showPrice>h1').html(totPrice + " KRW");
-			$('#totalprice').html(totPrice + " KRW");
+			$('.showPrice>h1').html(totalPrice + " KRW");
+			$('#totalprice').html(totalPrice + " KRW");
+			
+			//---------------------------------------------------------------
+			
+			if(gender == "MALE") {
+				$('input:radio[name="gender"]:input[value="MALE"]').attr("checked", true);
+			}else {
+				$('input:radio[name="gender"]:input[value="FEMALE"]').attr("checked", true);
+			}
+			$('#rsvNm').val(rsvName);
+			$('#enNm1').val(aryEngNm[0]);
+			$('#enNm2').val(aryEngNm[1]);
+			$('select[name="nationality"]').val(nationality);
+			$('select[name="phone1"]').val(aryPhoneNum[0]);
+			$('input[name="phone2"]').val(aryPhoneNum[1]);
+			$('input[name="phone3"]').val(aryPhoneNum[2]);
+			$('input[name="phone4"]').val(aryPhoneNum[3]);
+			$('input[name="email1"]').val(aryEmail[0]);
+			$('input[name="email2"]').val(aryEmail[1]);
+            $('select[name="card"]').val(cardType);
+            $('input[name="cardNum1"]').val(cardNum.substring(0, 4));
+            $('input[name="cardNum2"]').val(cardNum.substring(4, 8));
+            $('input[name="cardNum3"]').val(cardNum.substring(8, 12));
+            $('input[name="cardNum4"]').val(cardNum.substring(12));
+			$('select[name="selmonth"]').val(expDate.substring(0, 2));
+			$('select[name="selyear"]').val(expDate.substring(2, 6));
+			$('#cardPw').val(cardPw);
+			$('input[name="birthyear"]').val(birth.substring(0, 4));
+			$('input[name="birthmonth"]').val(birth.substring(4, 6));
+			$('input[name="birthdate"]').val(birth.substring(6));
 			
 		}
 		
-		$(document).on('focus', 'input', function(event) {
-			//console.log(event.target.getAttribute('data-val'));
-			//console.log($(this).val)
-			if(event.target.defaultValue != '') {
-				event.target.defaultValue = ''
-			}
-		})
-		
-		$(document).on('focusout', 'input', function(event) {
-			if(event.target.defaultValue == '') {
-				event.target.defaultValue = event.target.getAttribute('data-val');
-			}
-		})
-		
-		$(document).on('click', '.btnToggle', function(event) {
-			//console.log(event.target);
-			//console.log($(this).parent().siblings());
-			//console.log($(this).parent().siblings().attr('style'));
+		function getDay(date) {
+			let frDay = (new Date(date)).getDay();
 			
-			if($(this).parent().siblings().attr('style') == 'display: none') {
-				$(this).parent().siblings().attr('style', 'display: block');
-			} else {
-				$(this).parent().siblings().attr('style', 'display: none');
-			}
-		})
-		
-		$(document).on('change', '#email', function(event) {
-			$('input[name="email2"]').val($('select[name="selemail"]').val());
-		})
-		
-		
-		$(document).on('click', '#bookingComplete', function(event) {
-			saveBookingInfo();
-		})
-		
-		function saveBookingInfo() {				
-            let gender = $('input[name="gender"]:checked').val();
-            let rsvName = $('#rsvNm').val();
-            let enNm = $('#enNm1').val() + ":" + $('#enNm2').val();
-            let selNat = $('select[name="nationality"]').val();
-            let phone = $('select[name="phone1"]').val() + "-" + $('input[name="phone2"]').val() + "-" + $('input[name="phone3"]').val() + "-" + $('input[name="phone4"]').val();
-            let email = $('input[name="email1"]').val() + "@" + $('input[name="email2"]').val();
-            let card = $('select[name="card"]').val();
-            let cardNum = $('input[name="cardNum1"]').val() + $('input[name="cardNum2"]').val() + $('input[name="cardNum3"]').val() + $('input[name="cardNum4"]').val();
-			let cardExp = $('select[name="selmonth"]').val() + $('select[name="selyear"]').val();
-			let cardPw = $('#cardPw').val();
-			let birth = $('input[name="birthyear"]').val() + $('input[name="birthmonth"]').val() + $('input[name="birthdate"]').val();
-            
-            if(gender == '' || rsvName == '' || enNm1 == '' || enNm2 == '' || selNat == '' || phone == '' || email == '' || card == '' || cardNum == '' || cardExp == '' || cardPw == '' || birth == '') {
-            	window.alert("누락된 값이 있습니다.");
-            	return;
-            }
-            
-            if($('#IdInfoAgree').is(":checked") == false) {
-            	window.alert("개인정보 수집·이용에 동의해주세요.");
-            	return;
-            }
-            
-            if($('#cnclAgree').is(":checked") == false) {
-            	window.alert("취소 및 노쇼 규정에 동의해주세요.");
-            	return;
-            }
-            
-            let A = [];
-            let C = [];
-            let E = [];
-            
-            for(let i = 0; i < aryOptDiv.length; i++) {
-            	if(aryOptDiv[i] == 'A') {
-            		A = new Array(aryOptDiv[i], aryOptCnt[i], aryOptPrice[i])
-            	} else if (aryOptDiv[i] == 'C') {
-            		C = new Array(aryOptDiv[i], aryOptCnt[i], aryOptPrice[i])
-            	} else if (aryOptDiv[i] == 'E') {
-            		E = new Array(aryOptDiv[i], aryOptCnt[i], aryOptPrice[i])
-            	}
-            }
+			let = ['일', '월', '화', '수', '목', '금', '토'];
 			
-            //ajax..호출.
-            $.ajax({
-                url: '../HotelServlet',
-                type: 'get',
-                dataType: 'json',
-                data: {cmd: "save",
-                	   id: id,
-                	   gender: gender, //'id=' + userId + '&fname=' + fname,
-                	   grpCd: grpCd,
-                	   checkIn: frDate,
-                	   checkOut: toDate,
-                	   adults: adults,
-                	   children: children,
-                	   roomCnt: rooms,
-                	   adultsBf: A[1],
-                	   childrenBf: C[1],
-                	   extraBed: E[1],
-                	   adultsBfP: A[2],
-                	   childrenBfP: C[2],
-                	   extraBedP: E[2],
-                	   roomPrice: roomPrice,
-                	   tax: taxPrice,
-                	   totalPrice: totPrice,
-                	   cmt: req,
-                	   rsvName: rsvName,
-                	   engNm: enNm,               	   
-                	   nationality: selNat,
-                	   phoneNum: phone,
-                	   email: email,
-                	   cardType: card,
-                	   cardNum: cardNum,
-                	   expDate: cardExp,
-                	   cardPw: cardPw,
-                	   birth: birth
-                	   },
-                dataType: 'json',
-                success: function(result) {
-                    console.log("성공");
-                    
-                    if(result.retCode == 'success') {
-                    	console.log(result);
-                        
-                        console.log(result.roomCd);
-                        let temp = result.roomCd;
-                        let arytemp = temp.split(":");
-                        let bookingCd = arytemp[0];
-                        let roomCd = arytemp[1];
-                        
-                        //location.href = "chkReservation.jsp?id=" + id + "&name=" + name;
-                        location.href = "chkReservation.jsp?bookingCd=" + bookingCd + "&roomCd=" + roomCd + "&grpCd=" + grpCd + "&id=" + id + "&name=" + name ;
-                    	
-                    }
-                    
-                    
-                },
-                error: function(reject) {
-                	console.log("실패");
-                }
-            });
-			
-			return false;
+			return let[frDay];
 		}
+		
+		function getStay(frDate, toDate) {
+			let fr = new Date(frDate);
+			let to = new Date(toDate);
+			
+			return (to - fr) / (60 * 60 * 24 * 1000);
+		}
+		
+		$(document).ready(function() {
+			$('input').attr("disabled", true);
+			$('select').attr("disabled", true);
+		})
 		
 		$(document).on('click', '.logo', function(event) {
 	  		location.href = "main.jsp?id=" + id + "&name=" + name;
 	  	})
 		
-		if(sessionStorage.getItem('name')) {
-	  		//console.log($('.login>h5').html());
-	  		//console.log(name);
-	  		//console.log(sessionStorage.getItem('name'));
-	  		
-	  		if(sessionStorage.getItem('name')) {
-		  		$('.login>h5').html(sessionStorage.getItem('name') + "님");
-		  		$('#rsvNm').val(sessionStorage.getItem('name'));
-	  		} else {
-	  			$('.login>h5').html("로그인");
-	  		}
-	  	} else {
-	  		$('.login>h5').html("로그인");
-	  	}
-		
-		
 		
 		
 	</script>
-
+	
 </body>
 </html>

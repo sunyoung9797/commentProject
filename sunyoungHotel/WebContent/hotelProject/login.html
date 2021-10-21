@@ -40,15 +40,46 @@ header>div>div {
 }
 section {
 	background-color: rgb(253, 241, 223);
-	height: 800px;
+	height: 700px;
 }
 
 section>div.login {
+	color: rgb(54, 54, 54);
+	display: inline-block;
 	text-align: center;
-	padding-top: 60px;
-	padding-right: 80px;
+	margin-left:38%;
+	margin-top:60px;
+	padding: 20px;
     font-size: large;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.h4{
+	margin-bottom: 40px;
+	text-align: center;
+	font-size: 60px;
+	color: rgb(54, 54, 54);
+}
+.content {
+	background-color: rgb(253, 221, 180);
+	padding : 70px 40px 40px 40px;
+}
+#id,#password {
+	width:40%;
+}
+footer {
+	margin-top: 50px;
+}
+footer>div {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: small;
+}
+.fmenu>div {
+	display: inline-block;
+}
+
+footer>div.logo {
+	margin-left: 34%;
 }
 
     </style>
@@ -80,21 +111,37 @@ section>div.login {
     </header>
     <section>
         <div class="login">
-            <h4 style="text-align: center; font-size: 60px;">
+            <h4 class="h4">
 				LOGIN
 			</h4><br>
-            <div class="field">ID:&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;<input type="text" id="id"></div><br>
-            <div class="field">PASSWORD:&nbsp; <input type="text" id="password"></div><br>
-            <div class="btn" style="text-align: center;">
-                <button id="loginBtn" >LOGIN</button>
-            </div>
+			<div class="content">
+				<div class="field">ID:&emsp;&emsp;&emsp;&emsp;&ensp;<input type="text" id="id"></div><br>
+				<div class="field">PASSWORD:&ensp; <input type="text" id="password"></div><br><br>
+				<div class="btn" style="text-align: center;">
+					<button id="idSearch">아이디찾기</button>
+					<button id="pwSearch">비밀번호찾기</button>
+					<button id="loginBtn">로그인</button>
+				</div>
+			</div>
         </div>
     </section>
     <footer>
-        <div class="logo"></div>
-        <div class="info"></div>
-        <div class="address"></div>
-    </footer>
+		<div class="logo"><img width="100px" src="logo3.png"></div>
+		<div class="info">
+			<div class="fmenu">
+				<div id="cutomercenter">고객센터</div>
+				<div id="usermanual">이용약관</div>
+				<div id="membership">멤버십 이용약관</div>
+				<div id="idinfomng">개인정보처리방침</div>
+				<div id="sitemap">사이트맵</div>
+				
+			</div>
+			<div class="address">
+				<p>대구광역시 중구 중앙대로 403   대표이사 서강중   053-421-2460</p>
+			</div>
+		</div>
+		
+	</footer>
 
     <script>
         document.getElementById('loginBtn').onclick = function () {
@@ -124,11 +171,10 @@ section>div.login {
 					return;
 				}
             }
-            
         }    
 
         $(document).on('click', '.logo', function(event) {
-                   location.href = "main.jsp?id=" + id + "&name=" + name;
+                   location.href = "main.jsp";
                 })
 
     </script>

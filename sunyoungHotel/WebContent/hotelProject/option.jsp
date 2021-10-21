@@ -42,14 +42,14 @@
 		}
 		section>div.title>div {
 			padding-top: 80px;
-			padding-left: 58px;
+			padding-left: 10%;
 		}
 		section>div.title:first-letter{
 			font-size: 40px;
 		}
 		section>div.subtitle {
 			display: inline-block;
-			padding-left: 60px;
+			padding-left: 10%;
 			font-size: large;
 			height: 40px;
 		}
@@ -60,10 +60,10 @@
 		}
 		section>div>div.label {
 			font-family: "Lucida Console", "Courier New", monospace;
-			padding-left: 65px;
+			padding-left: 10%;
 		}
 		section>div>div.content {
-			padding-left: 63px;
+			padding-left: 10%;
 		}
 		section>div>div.label>div {
 			display: inline-block;
@@ -102,7 +102,7 @@
 		.listCont {
 			width: 60%;
 			min-width: 650px;
-			margin-left: 20px;
+			margin-left: 8%;
 		}
 		.listCont>h2, .listCont>p {
 			margin-left: 40px;
@@ -235,6 +235,21 @@
 			background-color: black;
 			color: white;
 		}
+		footer {
+			margin-top: 50px;
+		}
+		footer>div {
+			display: inline-block;
+			vertical-align: middle;
+			font-size: small;
+		}
+		.fmenu>div {
+			display: inline-block;
+		}
+		
+		footer>div.logo {
+			margin-left: 34%;
+		}
 		
 	</style>
 	
@@ -252,6 +267,8 @@
 		String rooms = request.getParameter("rooms");
 		String adults = request.getParameter("adults");
 		String children = request.getParameter("children");
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
 	%>
 	
 	<header>
@@ -260,7 +277,7 @@
 				<path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"></path>
 			</svg>
 		</div>
-		<div class="logo"><a href="main.html"><img src="logo2.png"></a></div>
+		<div class="logo"><img src="logo2.png"></div>
 		<div class="member">
 			<div class="login"><h5>로그인</h5></div>
 			<div class="join"><h5>회원가입</h5></div>
@@ -300,16 +317,22 @@
 	</section>
 	
 	<footer>
-		<div class="logo">
+			<div class="logo"><img width="100px" src="logo3.png"></div>
+			<div class="info">
+				<div class="fmenu">
+					<div id="cutomercenter">고객센터</div>
+					<div id="usermanual">이용약관</div>
+					<div id="membership">멤버십 이용약관</div>
+					<div id="idinfomng">개인정보처리방침</div>
+					<div id="sitemap">사이트맵</div>
+					
+				</div>
+				<div class="address">
+					<p>대구광역시 중구 중앙대로 403   대표이사 서강중   053-421-2460</p>
+				</div>
+			</div>
 			
-		</div>
-		<div class="info">
-		
-		</div>
-		<div class="address">
-		
-		</div>
-	</footer>
+		</footer>
 	
 	<script>
 		let grpCd = '<%=grpCd%>';
@@ -318,6 +341,10 @@
 		let rooms = '<%=rooms%>';
 		let adults = '<%=adults%>';
 		let children = '<%=children%>';
+		let id = '';
+		let name = '';
+		id = '<%=id%>';
+		name = '<%=name%>';
 		
 		//$('header').append('<h1>' + grpCd + " : " + frDate + " : " + toDate + " : " + rooms + " : " + adults + " : " + children + '</h1>');
 		
@@ -547,9 +574,9 @@
 		
 		$(document).on('click', '#bookingmember', function(event) {
 			//로그인되어있지 않으면 로그인 화면으로
-			if (user_id == ''){
-				
-			}
+			//if (user_id == ''){
+				//location.href = "login.html"
+			//}
 			loadConfirmPage('member');
 		})
 		
@@ -596,13 +623,39 @@
 			if (div == 'member') {
 				//로그인 후
 				location.href = "reservation.jsp?div=" + div + "&grpCd=" + grpCd + "&frDate=" + frDate + "&toDate=" + toDate + "&rooms=" + rooms + "&adults=" + adults + "&children=" + children + "&totPrice=" + tot_price + 
-				"&roomPrice=" + room_price + "&optName=" + opt_name + "&optPrice=" + opt_price + "&optDiv=" + opt_div + "&optCnt=" + opt_cnt + "&taxPrice=" + tax_price + "&request=" + request + "&id=" + user_id ;
+				"&roomPrice=" + room_price + "&optName=" + opt_name + "&optPrice=" + opt_price + "&optDiv=" + opt_div + "&optCnt=" + opt_cnt + "&taxPrice=" + tax_price + "&request=" + request + "&id=" + id + "&name=" + name ;
 				
 			} else {
 				location.href = "reservation.jsp?div=" + div + "&grpCd=" + grpCd + "&frDate=" + frDate + "&toDate=" + toDate + "&rooms=" + rooms + "&adults=" + adults + "&children=" + children + "&totPrice=" + tot_price + 
 				"&roomPrice=" + room_price + "&optName=" + opt_name + "&optPrice=" + opt_price + "&optDiv=" + opt_div + "&optCnt=" + opt_cnt + "&taxPrice=" + tax_price + "&request=" + request + "&id=" + '' ;
 			}
 		}
+		
+		$(document).on('click', '.logo', function(event) {
+	  		location.href = "main.jsp?id=" + id + "&name=" + name;
+	  	})
+		
+		$(document).on('click', '.login', function(event) {
+	  		//이미 로그인 되어있으면 막도록 추가함**********************
+	  		if($('.login>h5').html() == "로그인") {
+		  		location.href = "login.html"
+	  		}
+	  	})
+	  	
+	  	if(sessionStorage.getItem('name')) {
+	  		//console.log($('.login>h5').html());
+	  		//console.log(name);
+	  		//console.log(sessionStorage.getItem('name'));
+	  		
+	  		if(sessionStorage.getItem('name')) {
+		  		$('.login>h5').html(sessionStorage.getItem('name') + "님");
+		  		
+	  		} else {
+	  			$('.login>h5').html("로그인");
+	  		}
+	  	} else {
+	  		$('.login>h5').html("로그인");
+	  	}
 		
 		
 	</script>

@@ -52,24 +52,27 @@ section {
 	z-index:1;
 	width:100%;
     height:70%;
-    margin: 20% 0% 20% 0%;
+    margin: 15% 0% 20% 0%;
     font-size: large;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 table.in {
 	z-index:0;
 	background-color: rgba(0, 0, 0, 0.3);
-	padding: 2% 5% 2% 5%;
+	padding-left: 12%;
+	padding-right: 12%;
+	padding-top: 30px;
+	padding-bottom:30px;
 }
 td {
 	width:19%;
 	text-align: center;
 }
-input#adult, input#kids{
-	width:70%;
+#checkin,#checkout,#adult,#kids{
+	width:55%;
 }
 select#room {
-	width:70%;	
+	width:55%;	
 }
 
 img#img {
@@ -83,6 +86,22 @@ img#img {
 	z-index:2;
 	position: relative;
 }
+footer {
+	margin-top: 50px;
+}
+footer>div {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: small;
+}
+.fmenu>div {
+	display: inline-block;
+}
+
+footer>div.logo {
+	margin-left: 34%;
+}
+
 </style>
 
 <body>
@@ -145,9 +164,21 @@ img#img {
 
 		</section>
 		<footer>
-			<div class="logo"></div>
-			<div class="info"></div>
-			<div class="address"></div>
+			<div class="logo"><img width="100px" src="logo3.png"></div>
+			<div class="info">
+				<div class="fmenu">
+					<div id="cutomercenter">고객센터</div>
+					<div id="usermanual">이용약관</div>
+					<div id="membership">멤버십 이용약관</div>
+					<div id="idinfomng">개인정보처리방침</div>
+					<div id="sitemap">사이트맵</div>
+					
+				</div>
+				<div class="address">
+					<p>대구광역시 중구 중앙대로 403   대표이사 서강중   053-421-2460</p>
+				</div>
+			</div>
+			
 		</footer>
 	</div>
 
@@ -155,40 +186,35 @@ img#img {
 		let name = '<%=name%>';
 		let id = '<%=id%>';
 		
-      	let frDate = $('#checkin').val().replace('-','');
-      	let toDate = $('#checkout').val().replace('-','');
-      	let rooms = $('#room').val();
-      	let adults = $('#adult').val();
-      	let children =$('#kids').val();
-		
-	  	$(document).on('click', '.btnsearch', function(event) {
+	  	$(document).on('click', '#btnsearch', function(event) {
+	  		let frDate = $('#checkin').val();
+	      	let toDate = $('#checkout').val();
+	      	let rooms = $('#room').val();
+	      	let adults = $('#adult').val();
+	      	let children =$('#kids').val();
+	      	
 	  		location.href = "bookableList.jsp?frDate=" + frDate + "&toDate=" + toDate + "&rooms=" + rooms 
 	            + "&adults=" + adults + "&children=" + children + "&id=" + id;
 	  	})
 	  	
 	  	$(document).on('click', '.login', function(event) {
-           //이미 로그인 되어있으면 막도록 추가함**********************
-           if($('.login>h5').html() == "로그인") {
-              location.href = "login.html"
-           }
-        })
-        
-        if(sessionStorage.getItem('name')) {
-           //console.log($('.login>h5').html());
-           //console.log(name);
-           //console.log(sessionStorage.getItem('name'));
-           
-           if(sessionStorage.getItem('name')) {
-              $('.login>h5').html(sessionStorage.getItem('name') + "님");
-              
-           } else {
-              $('.login>h5').html("로그인");
-           }
-        } else {
-           $('.login>h5').html("로그인");
-        }
-
-
+	  		console.log("11");
+	  		location.href = "login.html"
+	  	})
+	  	
+	  	if(sessionStorage.getItem('name')) {
+	  		//console.log($('.login>h5').html());
+	  		//console.log(name);
+	  		//console.log(sessionStorage.getItem('name'));
+	  		
+	  		if(sessionStorage.getItem('name')) {
+		  		$('.login>h5').html(sessionStorage.getItem('name') + "님");
+	  		} else {
+	  			$('.login>h5').html("로그인");
+	  		}
+	  	} else {
+	  		$('.login>h5').html("로그인");
+	  	}
 	  	
 	  	$(document).on('click','.join', function(event) {
 	  		location.href = "join.html"
